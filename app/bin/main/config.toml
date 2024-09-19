@@ -1,27 +1,27 @@
 [Gereral]
+Port = 8430
 Title = "Homepage"
 Timezone = "Asia/Shanghai"
 
 [[Category]]
 categoryName = "APP"
 items = [
-    { itemName = "板块1", itemIcon = "Blog", itemLink = "#section1" },
-    { itemName = "板块2", itemIcon = "CloudDrive", itemLink = "#section2" },
-    { itemName = "板块3", itemIcon = "icon3", itemLink = "#section3" }
+    { itemName = "Blog", itemIcon = "Blog", itemLink = "#section1" },
+    { itemName = "CloudDrive", itemIcon = "CloudDrive", itemLink = "#section2" },
+    { itemName = "CodeServer", itemIcon = "CodeServer", itemLink = "#section3" }
 ]
 
 [[Category]]
 categoryName = "API"
 items = [
-    { itemName = "板块4", itemIcon = "mqtt", itemLink = "#section4" },
-    { itemName = "板块5", itemIcon = "icon5", itemLink = "#section5" },
-    { itemName = "板块6", itemIcon = "icon6", itemLink = "#section6" }
+    { itemName = "mqtt", itemIcon = "mqtt", itemLink = "#section4" },
+    { itemName = "Database", itemIcon = "Database", itemLink = "#section5" }
 ]
 
 [[Category]]
 categoryName = "Contact"
 items = [
     { itemName = "Github", itemIcon = "Github", itemLink = "#section7" },
-    { itemName = "Facebook", itemIcon = "icon5", itemLink = "#section8" },
-    { itemName = "X", itemIcon = "icon6", itemLink = "#section9" }
+    { itemName = "Facebook", itemIcon = "Facebook", itemLink = "#section8" },
+    { itemName = "X", itemIcon = "X", itemLink = "#section9" }
 ]

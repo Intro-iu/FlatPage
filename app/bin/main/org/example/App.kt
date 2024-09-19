@@ -6,37 +6,40 @@ import io.ktor.server.routing.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import io.ktor.http.*
-import com.sksamuel.hoplite.ConfigLoader
+import com.sksamuel.hoplite.ConfigLoaderBuilder
+import com.sksamuel.hoplite.addResourceSource
 import java.io.File
 
-data class GereralConfig(
+data class GereralConfig (
+    val Port: Int,
     val Title: String,
     val Timezone: String
 )
 
-data class Item(
+data class Item (
     val itemName: String,
     val itemIcon: String,
     val itemLink: String
 )
 
-data class Category(
+data class Category (
     val categoryName: String,
     val items: List<Item>
 )
 
-data class Config(
+data class Config (
     val Gereral: GereralConfig,
     val Category: List<Category>
 )
 
 fun main() {
-    embeddedServer(Netty, port = 8080) {
+    val iconContent = File("src/main/resources/icon.html").readText()
+    val config = ConfigLoaderBuilder.default().addResourceSource("/config.toml").build().loadConfigOrThrow<Config>()
+
+    val dynamicHtmlContent_Category = generateHtml(config)
+    embeddedServer(Netty, port = config.Gereral.Port) {
         routing {
             get("/") {
-                val iconContent = File("src/main/resources/icon.html").readText()
-                val config = ConfigLoader().loadConfigOrThrow<Config>("src/main/resources/config.toml")
-                val dynamicHtmlContent_Category = generateHtml(config)
                 val template = File("src/main/resources/template.html").readText()
                 val fullHtml = template.replace("{{iconContent}}", iconContent).replace("{{Title}}", config.Gereral.Title).replace("{{Category}}", dynamicHtmlContent_Category)
                 call.respondText(fullHtml, ContentType.Text.Html)
